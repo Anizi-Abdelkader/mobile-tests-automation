@@ -1,6 +1,11 @@
-utils/AppiumConfig.class
-pages/welcomePage.class
-utils/DriverManager.class
+StepDef/HomeSteps.class
+StepDef/SearchSteps.class
+pages/HomePage.class
+pages/BasePage.class
 StepDef/Hooks.class
-StepDef/welcomeSteps.class
 runner/RunnerCucumberTests.class
+utils/AppiumConfig.class
+utils/DriverManager.class
+pages/CarouselPage.class
+StepDef/CarouselSteps.class
+pages/SearchPage.class

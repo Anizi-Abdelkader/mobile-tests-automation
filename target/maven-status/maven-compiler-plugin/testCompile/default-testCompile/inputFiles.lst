@@ -1,5 +1,11 @@
+/Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/pages/BasePage.java
 /Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/runner/RunnerCucumberTests.java
 /Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/utils/AppiumConfig.java
-/Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/StepDef/welcomeSteps.java
-/Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/pages/welcomePage.java
+/Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/utils/DriverManager.java
+/Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/StepDef/CarouselSteps.java
+/Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/pages/CarouselPage.java
+/Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/StepDef/SearchSteps.java
+/Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/pages/SearchPage.java
 /Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/StepDef/Hooks.java
+/Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/pages/HomePage.java
+/Users/abdelkader.anizi/Desktop/app-mob/mobile-tests-automation/src/test/java/StepDef/HomeSteps.java
