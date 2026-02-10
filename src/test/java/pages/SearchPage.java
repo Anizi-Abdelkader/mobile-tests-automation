@@ -8,7 +8,7 @@ public class SearchPage extends BasePage{
     @AndroidFindBy(id = "org.wikipedia.alpha:id/search_src_text")
     private WebElement searchTxtField;
 
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(id = "org.wikipedia.alpha:id/search_close_btn")
     private WebElement closePopupBtn;
 
     public void SearchTxt(String txt) {
