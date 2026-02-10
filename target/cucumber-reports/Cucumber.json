@@ -1,0 +1,58 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2026-02-10T00:44:14.574Z",
+        "before": [
+          {
+            "result": {
+              "duration": 4469353000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "StepDef.Hooks.setUp()"
+            }
+          }
+        ],
+        "line": 4,
+        "name": "xxxx",
+        "description": "",
+        "id": "xxxx;xxxx",
+        "after": [
+          {
+            "result": {
+              "duration": 115132000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "StepDef.Hooks.tearDown()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 351220000,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "the user is on welcome page",
+            "match": {
+              "location": "StepDef.welcomeSteps.theUserIsOnWelcomePage()"
+            },
+            "keyword": "Given "
+          }
+        ]
+      }
+    ],
+    "name": "xxxx",
+    "description": "",
+    "id": "xxxx",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/features/welcome.feature",
+    "tags": []
+  }
+]

@@ -1,0 +1,6 @@
+utils/AppiumConfig.class
+pages/welcomePage.class
+utils/DriverManager.class
+StepDef/Hooks.class
+StepDef/welcomeSteps.class
+runner/RunnerCucumberTests.class
