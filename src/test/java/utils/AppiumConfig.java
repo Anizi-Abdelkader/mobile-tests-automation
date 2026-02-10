@@ -1,11 +1,16 @@
 package utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.remote.options.BaseOptions;
 import io.appium.java_client.android.options.UiAutomator2Options;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Map;
 
 public class AppiumConfig {
@@ -14,25 +19,61 @@ public class AppiumConfig {
     private URL url;
 
     public AppiumConfig(String jsonPath) throws Exception {
-        // Charger le fichier JSON
+        // 1️⃣ Charger le fichier JSON
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> configMap = mapper.readValue(new File(jsonPath), Map.class);
 
-        // Créer les options Android (adapter si iOS)
+        // 2️⃣ Créer les options Android
         UiAutomator2Options androidOptions = new UiAutomator2Options();
-        androidOptions.setPlatformName((String) configMap.get("platformName"));
-        androidOptions.setDeviceName((String) configMap.get("deviceName"));
-        androidOptions.setAppPackage((String) configMap.get("appPackage"));
-        androidOptions.setAppActivity((String) configMap.get("appActivity"));
+
+        // 3️⃣ Récupérer le sous-map "capabilities"
+        Map<String, Object> capsMap = (Map<String, Object>) configMap.get("capabilities");
+
+        if (capsMap == null) {
+            throw new RuntimeException("Le JSON ne contient pas de champ 'capabilities'");
+        }
+
+        // 4️⃣ Définir les capabilities standard via les méthodes UiAutomator2Options
+        if (capsMap.containsKey("platformName")) {
+            androidOptions.setPlatformName((String) capsMap.get("platformName"));
+        }
+        if (capsMap.containsKey("appium:automationName")) {
+            androidOptions.setAutomationName((String) capsMap.get("appium:automationName"));
+        }
+        if (capsMap.containsKey("appium:deviceName")) {
+            androidOptions.setDeviceName((String) capsMap.get("appium:deviceName"));
+        }
+        if (capsMap.containsKey("appPackage")) {
+            androidOptions.setAppPackage((String) capsMap.get("appPackage"));
+        }
+        if (capsMap.containsKey("appActivity")) {
+            androidOptions.setAppActivity((String) capsMap.get("appActivity"));
+        }
+
+        // 5️⃣ Ajouter toutes les autres capabilities dynamiquement
+        for (Map.Entry<String, Object> entry : capsMap.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            // Ignorer celles déjà définies
+            if (key.equals("platformName") || key.equals("appium:automationName") ||
+                    key.equals("appium:deviceName") || key.equals("appPackage") || key.equals("appActivity")) {
+                continue;
+            }
+
+            androidOptions.setCapability(key, value);
+        }
 
         this.options = androidOptions;
 
-        // URL du serveur Appium
-        String urlString = configMap.getOrDefault("url", "http://127.0.0.1:4723").toString();
+        // 6️⃣ URL du serveur Appium
+        String urlString = configMap.getOrDefault("serverUrl", "http://127.0.0.1:4723").toString();
+
+
         try {
             this.url = new URL(urlString);
         } catch (MalformedURLException e) {
-            throw new RuntimeException("URL du serveur Appium invalide : " + urlString);
+            throw new RuntimeException("URL du serveur Appium invalide : " + urlString, e);
         }
     }
 

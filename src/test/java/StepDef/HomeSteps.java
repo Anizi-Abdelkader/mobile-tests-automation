@@ -1,6 +1,7 @@
 package StepDef;
 
 import io.cucumber.java.PendingException;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import pages.HomePage;
 
@@ -10,5 +11,10 @@ public class HomeSteps {
     @When("I'm on search page")
     public void iSearchFor() throws InterruptedException {
         homePage.clickOnSearch();
+    }
+
+    @And("I click on Crésus")
+    public void iClickOnCrésus() {
+
     }
 }

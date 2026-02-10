@@ -9,8 +9,6 @@ public class HomePage extends BasePage{
 
     public void clickOnSearch() throws InterruptedException {
         SearchTxtField.click();
-        Thread.sleep(30000);
-        driver.navigate().back();
     }
 
 }

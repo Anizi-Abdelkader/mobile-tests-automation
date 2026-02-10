@@ -1,10 +1,12 @@
 StepDef/HomeSteps.class
+StepDef/LanguageSteps.class
 StepDef/SearchSteps.class
 pages/HomePage.class
 pages/BasePage.class
 StepDef/Hooks.class
 runner/RunnerCucumberTests.class
 utils/AppiumConfig.class
+pages/LanguagePage.class
 utils/DriverManager.class
 pages/CarouselPage.class
 StepDef/CarouselSteps.class

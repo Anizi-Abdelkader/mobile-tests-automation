@@ -2,7 +2,9 @@ package pages;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -95,5 +97,24 @@ public abstract class BasePage {
             return false;
         }
     }
+
+    public void closeSystemPopupIfPresent() {
+        try {
+            WebElement cancelButton = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(
+                            AppiumBy.androidUIAutomator(
+                                    "new UiSelector().textMatches(\"(?i)Cancel|annuler\")"
+                            )
+                    )
+            );
+
+            cancelButton.click();
+            System.out.println("Fenêtre système affichée et fermée (Cancel / Annuler)");
+
+        } catch (TimeoutException e) {
+            System.out.println("Aucune fenêtre système détectée");
+        }
+    }
+
 
 }
