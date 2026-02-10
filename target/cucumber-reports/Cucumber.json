@@ -3,11 +3,11 @@
     "line": 1,
     "elements": [
       {
-        "start_timestamp": "2026-02-10T22:02:00.221Z",
+        "start_timestamp": "2026-02-10T22:50:14.800Z",
         "before": [
           {
             "result": {
-              "duration": 13713141000,
+              "duration": 12726337000,
               "status": "passed"
             },
             "match": {
@@ -16,13 +16,13 @@
           }
         ],
         "line": 4,
-        "name": "xxxx",
+        "name": "Change wiki language",
         "description": "",
-        "id": "xxxx;xxxx",
+        "id": "technical-test;change-wiki-language",
         "after": [
           {
             "result": {
-              "duration": 250543000,
+              "duration": 262616000,
               "status": "passed"
             },
             "match": {
@@ -35,7 +35,7 @@
         "steps": [
           {
             "result": {
-              "duration": 6970367000,
+              "duration": 5305091000,
               "status": "passed"
             },
             "line": 5,
@@ -47,7 +47,7 @@
           },
           {
             "result": {
-              "duration": 1371705000,
+              "duration": 2938906000,
               "status": "passed"
             },
             "line": 6,
@@ -59,7 +59,7 @@
           },
           {
             "result": {
-              "duration": 4461488000,
+              "duration": 303452000,
               "status": "passed"
             },
             "line": 7,
@@ -77,7 +77,7 @@
           },
           {
             "result": {
-              "duration": 16845393000,
+              "duration": 16755216000,
               "status": "passed"
             },
             "line": 8,
@@ -89,7 +89,7 @@
           },
           {
             "result": {
-              "duration": 226824000,
+              "duration": 169114000,
               "status": "passed"
             },
             "line": 9,
@@ -101,7 +101,7 @@
           },
           {
             "result": {
-              "duration": 5575715000,
+              "duration": 7989286000,
               "status": "passed"
             },
             "line": 10,
@@ -113,22 +113,28 @@
           },
           {
             "result": {
-              "duration": 4556000,
+              "duration": 1701000,
               "status": "passed"
             },
             "line": 11,
-            "name": "I click on Crésus",
+            "name": "I click on \"Crésus\"",
             "match": {
-              "location": "StepDef.HomeSteps.iClickOnCrésus()"
+              "arguments": [
+                {
+                  "val": "\"Crésus\"",
+                  "offset": 11
+                }
+              ],
+              "location": "StepDef.HomeSteps.iClickOnCrésus(java.lang.String)"
             },
             "keyword": "And "
           }
         ]
       }
     ],
-    "name": "xxxx",
+    "name": "Technical test",
     "description": "",
-    "id": "xxxx",
+    "id": "technical-test",
     "keyword": "Feature",
     "uri": "file:src/test/resources/features/welcome.feature",
     "tags": []

@@ -13,8 +13,8 @@ public class HomeSteps {
         homePage.clickOnSearch();
     }
 
-    @And("I click on Crésus")
-    public void iClickOnCrésus() {
-
+    @And("I click on {string}")
+    public void iClickOnCrésus(String txt) {
+        homePage.scrollAndClick(txt);
     }
 }

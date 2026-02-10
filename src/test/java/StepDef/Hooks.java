@@ -14,15 +14,15 @@ public class Hooks {
             AppiumConfig config = new AppiumConfig("src/test/resources/capabilities.json");
             AndroidDriver driver = new AndroidDriver(config.getUrl(), config.getOptions());
             DriverManager.setDriver(driver);
-            System.out.println("✅ Session Appium démarrée avec succès.");
+            System.out.println("Session Appium démarrée avec succès.");
         } catch (Exception e) {
-            throw new RuntimeException("❌ Impossible de démarrer la session Appium : " + e.getMessage());
+            throw new RuntimeException("Impossible de démarrer la session Appium : " + e.getMessage());
         }
     }
 
     @After
     public void tearDown() {
         DriverManager.quitDriver();
-        System.out.println("👋 Session Appium terminée.");
+        System.out.println("Session Appium terminée.");
     }
 }

@@ -11,4 +11,8 @@ public class HomePage extends BasePage{
         SearchTxtField.click();
     }
 
+    public void scrollAndClick(String txt) {
+        scrollAndClickByText(txt);
+    }
+
 }

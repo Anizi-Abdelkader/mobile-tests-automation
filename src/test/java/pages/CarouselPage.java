@@ -18,6 +18,6 @@ public class CarouselPage extends BasePage{
     }
 
     public void clickGetStartedBtn() {
-        clickWhenVisible(() -> getStartedBtn);
+         getStartedBtn.click();
     }
 }

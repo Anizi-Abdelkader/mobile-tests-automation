@@ -31,59 +31,6 @@ public abstract class BasePage {
         );
     }
 
-    // clicker sur un seul WebElement à chaque tour
-    protected void clickUntilGone(Supplier<WebElement> elementSupplier) {
-        FluentWait<AndroidDriver> waitFluent = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(15))
-                .pollingEvery(Duration.ofMillis(500))
-                .ignoring(StaleElementReferenceException.class, NullPointerException.class)
-                .ignoring(org.openqa.selenium.NoSuchElementException.class); // ajouter si l'élément n'est pas encore dans le DOM
-
-        while (true) {
-            try {
-                // relocaliser le WebElement à chaque tour
-                WebElement element = elementSupplier.get();
-
-                boolean visible = waitFluent.until(d -> {
-                    try {
-                        return element.isDisplayed();
-                    } catch (StaleElementReferenceException | NullPointerException e) {
-                        return false;
-                    }
-                });
-
-                if (!visible) break;
-                // clicker sur le webElement
-                element.click();
-                waitFluent.until(ExpectedConditions.invisibilityOf(element));
-
-            } catch (Exception e) {
-                break;
-            }
-        }
-    }
-
-    // clicker sur le webElement lorsque il est visible
-    protected void clickWhenVisible(Supplier<WebElement> elementSupplier) {
-        WebDriverWait localWait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        try {
-            WebElement element = localWait.until(d -> {
-                try {
-                    WebElement el = elementSupplier.get();
-                    return el.isDisplayed() ? el : null;
-                } catch (StaleElementReferenceException | NullPointerException ex) {
-                    return null;
-                }
-            });
-            element.click();
-            localWait.until(ExpectedConditions.invisibilityOf(element));
-
-        } catch (Exception e) {
-            throw new RuntimeException("Element non trouvé" + e.getMessage());
-        }
-    }
-
     protected boolean scrollToText(String text) {
         try {
             driver.findElement(
@@ -97,24 +44,18 @@ public abstract class BasePage {
             return false;
         }
     }
-
-    public void closeSystemPopupIfPresent() {
+    public void scrollAndClickByText(String visibleText) {
         try {
-            WebElement cancelButton = wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(
-                            AppiumBy.androidUIAutomator(
-                                    "new UiSelector().textMatches(\"(?i)Cancel|annuler\")"
-                            )
+            WebElement element = driver.findElement(
+                    AppiumBy.androidUIAutomator(
+                            "new UiScrollable(new UiSelector().scrollable(true))" +
+                                    ".scrollIntoView(new UiSelector().text(\"" + visibleText + "\"))"
                     )
             );
-
-            cancelButton.click();
-            System.out.println("Fenêtre système affichée et fermée (Cancel / Annuler)");
-
-        } catch (TimeoutException e) {
-            System.out.println("Aucune fenêtre système détectée");
+            element.click();
+            System.out.println("Élément cliqué : " + visibleText);
+        } catch (Exception e) {
+            System.out.println("Élément non trouvé : " + visibleText);
         }
     }
-
-
 }

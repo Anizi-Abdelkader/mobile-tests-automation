@@ -19,21 +19,19 @@ public class AppiumConfig {
     private URL url;
 
     public AppiumConfig(String jsonPath) throws Exception {
-        // 1️⃣ Charger le fichier JSON
+
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> configMap = mapper.readValue(new File(jsonPath), Map.class);
 
-        // 2️⃣ Créer les options Android
         UiAutomator2Options androidOptions = new UiAutomator2Options();
 
-        // 3️⃣ Récupérer le sous-map "capabilities"
         Map<String, Object> capsMap = (Map<String, Object>) configMap.get("capabilities");
 
         if (capsMap == null) {
             throw new RuntimeException("Le JSON ne contient pas de champ 'capabilities'");
         }
 
-        // 4️⃣ Définir les capabilities standard via les méthodes UiAutomator2Options
+
         if (capsMap.containsKey("platformName")) {
             androidOptions.setPlatformName((String) capsMap.get("platformName"));
         }
@@ -50,12 +48,10 @@ public class AppiumConfig {
             androidOptions.setAppActivity((String) capsMap.get("appActivity"));
         }
 
-        // 5️⃣ Ajouter toutes les autres capabilities dynamiquement
         for (Map.Entry<String, Object> entry : capsMap.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
 
-            // Ignorer celles déjà définies
             if (key.equals("platformName") || key.equals("appium:automationName") ||
                     key.equals("appium:deviceName") || key.equals("appPackage") || key.equals("appActivity")) {
                 continue;
@@ -66,9 +62,7 @@ public class AppiumConfig {
 
         this.options = androidOptions;
 
-        // 6️⃣ URL du serveur Appium
         String urlString = configMap.getOrDefault("serverUrl", "http://127.0.0.1:4723").toString();
-
 
         try {
             this.url = new URL(urlString);

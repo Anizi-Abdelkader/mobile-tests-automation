@@ -16,6 +16,9 @@ public class SearchPage extends BasePage{
     @AndroidFindBy(id = "org.wikipedia.alpha:id/langCodeText")
     private WebElement languageBtn;
 
+    @AndroidFindBy(id = "org.wikipedia.alpha:id/langCodeText")
+    private WebElement frenchLangBtn;
+
     public void SearchTxt(String txt) throws InterruptedException {
         searchTxtField.sendKeys(txt);
     }
@@ -31,4 +34,7 @@ public class SearchPage extends BasePage{
     public void clickOnLanguageBtn() {
         languageBtn.click();
 }
+    public void clickOnFrenchLang() {
+        frenchLangBtn.click();
+    }
 }

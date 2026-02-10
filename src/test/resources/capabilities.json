@@ -7,6 +7,8 @@
     "appium:ensureWebviewsHavePages": true,
     "appium:nativeWebScreenshot": true,
     "appium:newCommandTimeout": 3600,
-    "appium:connectHardwareKeyboard": true
+    "appium:connectHardwareKeyboard": true,
+    "appPackage": "org.wikipedia.alpha",
+    "appActivity": "org.wikipedia.search.SearchActivity"
   }
 }
